@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-// import {boo}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'myrsa';
+  title = 'Employee_Management';
 }
