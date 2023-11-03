@@ -1,11 +1,31 @@
-<h1 class="p-2 text-center">
-  Employee Management
-</h1>
-<div class="row">
-  <div class="  col-6 ">
+
+<!-- Nav Bar Start -->
+<div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <h1><a class="navbar-brand" href="#">Employee Management</a></h1>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" ngDefaultControl routerLink="./EmployeeForm">Home </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="./EmployeeList">Link</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+</div>
+<!-- Nav Bar End -->
+<!-- <div class="row">
+  <div class="  col-5 ">
     <div class=" card m-2 p-2"><app-employee-form></app-employee-form></div>
   </div>
-    <div class="  col-6 ">
+    <div class="  col-7 ">
       <div class=" card m-2 p-2"><app-employee-list></app-employee-list></div>
   </div>
-</div>
+</div> -->
+<router-outlet></router-outlet>

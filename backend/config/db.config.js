@@ -1,6 +1,6 @@
 const mysql = require('mysql')
 const Sequalize = require('sequelize') 
-const sequelize = new Sequalize('Employee_DB','root','123456',{
+const sequelize = new Sequalize('employee_db','root','root',{
     host: 'localhost',
     dialect: 'mysql'
 });

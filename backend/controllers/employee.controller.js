@@ -2,8 +2,9 @@ const db = require('../config/db.config')
 const Employee = db.employees
 
 exports.create = (req, res) => {
+  console.log("creating");
     const{ name,email,phoneNumber,salary,department,level } = req.body;
-
+    
     Employee.create({
         name,
         email,
@@ -19,6 +20,7 @@ exports.create = (req, res) => {
   };
   
   exports.findAll = (req, res) => {
+    console.log('Select *')
     Employee.findAll()
     .then(employees => {
       res.status(200).json(employees);
