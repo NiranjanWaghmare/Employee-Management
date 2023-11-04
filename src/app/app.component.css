@@ -1,0 +1,8 @@
+.employeeNavbar{
+        background-color: rgba(0, 0, 0, 0.2) !important;
+}
+.vertical-line {
+    border-left: 1px solid #0000005c; /* Change the color and width as needed */
+    height: 100%; /* Adjust the height as needed */
+  }
+  

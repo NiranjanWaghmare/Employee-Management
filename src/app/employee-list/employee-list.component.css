@@ -1,33 +1,8 @@
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  
-  /* Modal content */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
-  
-  /* Close button */
-  .close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  /* Close button on hover */
-  .close:hover {
-    color: #000;
-  }
+.employeeForm{
+    background-color: rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0px 0px 40px 0px rgba(0,0,0, 0.3)  !important;
+}
+.rowSeparator{
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.248); /* Width, style, and color of the top outline */
+    
+}

@@ -28,7 +28,7 @@ export class EmployeeService {
   updateEmployeeData(employeeData: any) {
     const getUrl = `${this.apiUrl}/${employeeData.id}`;
     console.log('we are here '+getUrl)
-    return this.http.put(this.apiUrl, employeeData).pipe(
+    return this.http.put(getUrl, employeeData).pipe(
       catchError(this.handleError)
     );
   }
@@ -38,7 +38,7 @@ export class EmployeeService {
     this.employeeData=this.http.get(getUrl).pipe(
       catchError(this.handleError)
     );
-    // console.log('got the data'+this.employeeData)
+
       return this.employeeData
   }
   deleteEmployeeData(employeeId: number){
