@@ -13,6 +13,7 @@ export class EmployeeListComponent implements OnInit {
   updateForm = false
   employeeData: any;
   iterations: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  searchName: string = '';
 
   constructor(
     private employeeService: EmployeeService,
@@ -36,11 +37,20 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     this.loadData();
   }
-
+  clearSearch(){
+    this.form.patchValue({
+      name: ''
+    })
+    this.loadData()
+  }
+  searchEmployee(){
+    this.searchName = this.form.get('name')?.value;
+    this.loadData()
+  }
   loadData() {
-    this.employeeService?.loadEmployeeData()?.subscribe((data: any) => {
+    
+    this.employeeService?.loadEmployeeData(this.searchName)?.subscribe((data: any) => {
       this.employeeData = data;
-      console.log(this.employeeData.length)
       
     });
   }
@@ -50,7 +60,7 @@ export class EmployeeListComponent implements OnInit {
       const yOffset = element.getBoundingClientRect().top + window.pageYOffset;
       window.scrollTo({ top: yOffset, behavior: 'smooth' });
     }
-    this.employeeService.searchEmployeeData(id).subscribe((data: any) => {
+    this.employeeService.searchEmployeeDataById(id).subscribe((data: any) => {
        this.updateForm = true     
        this.form.setValue({
         name: data['name'],

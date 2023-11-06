@@ -27,8 +27,6 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 export class EmployeeFormComponent implements OnInit {
   form: FormGroup;
 
-  iterations: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
   constructor(
     private formBuilder: FormBuilder,
     private employeeService: EmployeeService,

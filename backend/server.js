@@ -18,21 +18,6 @@ cors({
 })
 )
 
-// io.on('connection', socket => {
-//   console.log('A user connected');
-
-//   socket.on('employee-added', () => {
-//     io.emit('data-updated', 'Employee data has been updated');
-//   });
-//   socket.on('disconnect', () => {
-//     console.log('A user disconnected');
-//   });
-// });
-
-// db.sequelize.sync({ force: true }).then(() => {
-//   console.log('Recreated the database with new tables.');
-// });
-
 
 app.get('/', (req, res) => {
   res.send('Hello, Express!');

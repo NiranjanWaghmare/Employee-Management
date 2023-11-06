@@ -16,15 +16,7 @@ export class EmployeeService {
       catchError(this.handleError)
     );
   }
-
-  loadEmployeeData(){
-    console.log("emp");
-    return this.http.get(this.apiUrl).pipe(
-      catchError(this.handleError)
-    );
-
-  }
- 
+  
   updateEmployeeData(employeeData: any) {
     const getUrl = `${this.apiUrl}/${employeeData.id}`;
     console.log('we are here '+getUrl)
@@ -32,8 +24,16 @@ export class EmployeeService {
       catchError(this.handleError)
     );
   }
+  loadEmployeeData(employeeName: string){
+    console.log('In service'+employeeName)
+    const getUrl = `${this.apiUrl}?name=${employeeName}`
+    this.employeeData=this.http.get(getUrl).pipe(
+      catchError(this.handleError)
+    );
 
-  searchEmployeeData(employeeId: number){
+      return this.employeeData
+  }
+  searchEmployeeDataById(employeeId: number){
     const getUrl = `${this.apiUrl}/${employeeId}`;
     this.employeeData=this.http.get(getUrl).pipe(
       catchError(this.handleError)
