@@ -10,6 +10,7 @@ import { EmployeeFormComponent } from '../employee-form/employee-form.component'
 })
 export class EmployeeListComponent implements OnInit {
   form: FormGroup;
+  searchForm: FormGroup;
   updateForm = false
   employeeData: any;
   iterations: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -31,35 +32,35 @@ export class EmployeeListComponent implements OnInit {
       level: new FormControl(''),
       id : new FormControl('')
     });
+    this.searchForm = this.formBuilder.group({
+      searchName : new FormControl('')
+    })
   
-    // You can set up additional logic or event listeners here if needed
   }
   ngOnInit(): void {
     this.loadData();
   }
   clearSearch(){
-    this.form.patchValue({
-      name: ''
+    this.searchForm.patchValue({
+      searchName: ''
     })
     this.loadData()
   }
   searchEmployee(){
-    this.searchName = this.form.get('name')?.value;
     this.loadData()
+    this.updateForm = false;
   }
   loadData() {
     
+    this.searchName = this.searchForm.get('searchName')?.value
     this.employeeService?.loadEmployeeData(this.searchName)?.subscribe((data: any) => {
       this.employeeData = data;
-      
     });
   }
   updateButton(elementId: String,id: number){
     const element = this.el.nativeElement.querySelector(`#${elementId}`);
-    if (element) {
-      const yOffset = element.getBoundingClientRect().top + window.pageYOffset;
-      window.scrollTo({ top: yOffset, behavior: 'smooth' });
-    }
+   
+
     this.employeeService.searchEmployeeDataById(id).subscribe((data: any) => {
        this.updateForm = true     
        this.form.setValue({
@@ -72,8 +73,15 @@ export class EmployeeListComponent implements OnInit {
         id: data['id']
        })
     });
+
+    const yOffset = element?.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({ top: yOffset, behavior: 'smooth' });
+    console.log(this.form);
+    
+  
   }
   updateEmployee(){
+    
     const formData = this.form.value;
     this.employeeService.updateEmployeeData(formData)?.subscribe(
       (response) => {

@@ -3,68 +3,69 @@
 >
   <h4 class="text-center">Employee Table</h4>
   
-  <form class="form "  [formGroup]="form" (ngSubmit)="searchEmployee()" >
+  <form class="form"  [formGroup]="searchForm" (ngSubmit)="searchEmployee()" >
     <div class="row justify-content-end">
-    <div class="col-2"><input  formControlName="name" class="col-2 form-control  " type="search" placeholder="Search Employee Name" aria-label="Search"></div>
+    <div class="col-2"><input  formControlName="searchName" class="col-2 form-control  " type="search" placeholder="Search Employee Name" aria-label="Search"></div>
     <button class="col-1 btn btn-outline-primary mx-2" type="submit">Search</button>
     <button class="col-1 btn btn-outline-warning" (click)="clearSearch()">Clear Search</button>
   </div>
   </form>
-  <div class="d-flex justify-content-end"><!-- Align form to the right --></div>
   <hr />
+  <!-- <div *ngIf="this.employeeData.length; else elseBlock" class="mx-auto d-flex justify-content-center">
+    
+</div> -->
+<table class="text-center">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Department</th>
+      <th scope="col">Level</th>
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
 
-  <table class="text-center"  >
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Phone Number</th>
-        <th scope="col">Salary</th>
-        <th scope="col">Department</th>
-        <th scope="col">Level</th>
-        <th scope="col">Update</th>
-        <th scope="col">Delete</th>
-      </tr>
-    </thead>
-  
-    <tbody>
+  <tbody>
 
-      <tr 
-        *ngFor="let x of this.employeeData; let i = index"
-        class="pb-5 rowSeparator"
-      >
-        <th scope="row">{{i+1}}</th>
-        <td>{{ x.name }}</td>
-        <td>{{ x.email }}</td>
-        <td>{{ x.phoneNumber }}</td>
-        <td>{{ x.salary }}</td>
-        <td>{{ x.department }}</td>
-        <td>{{ x.level }}</td>
-        <td>
-          <button
-            type="button"
-            (click)="updateButton('sectionToScrollTo', x.id)"
-            class="btn btn-outline-warning"
-          >
-            Update
-          </button>
-        </td>
-        <td>
-          <button
-            type="button"
-            (click)="deleteEmployee(x.id)"
-            class="btn btn-outline-danger"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <tr 
+      *ngFor="let x of this.employeeData; let i = index"
+      class="pb-5 rowSeparator"
+    >
+      <th scope="row">{{i+1}}</th>
+      <td>{{ x.name }}</td>
+      <td>{{ x.email }}</td>
+      <td>{{ x.phoneNumber }}</td>
+      <td>{{ x.salary }}</td>
+      <td>{{ x.department }}</td>
+      <td>{{ x.level }}</td>
+      <td>
+        <button
+          type="button"
+          (click)="updateButton('sectionToScrollTo', x.id)"
+          class="btn btn-outline-warning"
+        >
+          Update
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          (click)="deleteEmployee(x.id)"
+          class="btn btn-outline-danger"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
   <div class="d-flex justify-content-end">
-    <button
+    <button *ngIf="this.employeeData?.length>0"
       type="button"
       (click)="deleteAllEmployee()"
       class="btn btn-danger my-2"
@@ -75,7 +76,7 @@
 </div>
 
 
-
+<!-- Update form -->
 <div *ngIf="updateForm" id="sectionToScrollTo">
   <!-- start -->
   <div class="p-5">
@@ -221,7 +222,7 @@
         <div class="p-2">
           <button
             type="submit"
-            [disabled]="form.invalid || form.pristine"
+            [disabled]="form.invalid"
             class="btn btn-outline-primary p-2 m-2"
           >
             Submit
