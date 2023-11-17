@@ -16,6 +16,8 @@ describe('EmployeeListComponent', () => {
   });
 
   it('should create', () => {
+    console.log();
+    
     expect(component).toBeTruthy();
   });
 });

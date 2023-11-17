@@ -1,36 +1,21 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup,Validators } from '@angular/forms';
 import { EmployeeService } from '../service/employee.service';
-import { ToastrService } from 'ngx-toastr';
-import { trigger, state, style, animate, transition } from '@angular/animations';
+
 
 
 @Component({
   selector: 'app-employee-form',
   templateUrl: './employee-form.component.html',
   styleUrls: ['./employee-form.component.css'],
-  animations: [
-    trigger('flyInOut', [
-      transition(':enter', [
-        style({ transform: 'translateX(-100%)' }),
-        animate('0.3s ease-out', style({ transform: 'translateX(0)' })),
-      ]),
-      transition(':leave', [
-        animate('0.3s ease-in', style({ transform: 'translateX(-100%)' })),
-      ]),
-    ]),
-  ]
 })
-@Injectable({
-  providedIn: 'root',
-})
-export class EmployeeFormComponent implements OnInit {
+
+export class EmployeeFormComponent  {
   form: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
-    private employeeService: EmployeeService,
-    private toastr: ToastrService
+    private employeeService: EmployeeService
   ) {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
@@ -52,12 +37,12 @@ export class EmployeeFormComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+
 
   onSubmit() {
     const formData = this.form.value;
     this.employeeService.createEmployeeData(formData).subscribe(
-      (response) => {
+      () => {
         alert('Employee Record Saved Successfully');
         this.form.reset();
       },
